@@ -1,4 +1,4 @@
-# A .env replacement for storing secret credentials in your Laravel application
+# Add encrypted credentials to your Laravel production environment
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/beyondcode/laravel-credentials.svg?style=flat-square)](https://packagist.org/packages/beyondcode/laravel-credentials)
 [![Build Status](https://img.shields.io/travis/beyondcode/laravel-credentials/master.svg?style=flat-square)](https://travis-ci.org/beyondcode/laravel-credentials)
@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/beyondcode/laravel-credentials.svg?style=flat-square)](https://packagist.org/packages/beyondcode/laravel-credentials)
 
 The `beyondcode/laravel-credentials` package allows you to store all your secret credentials in an encrypted file and put that file into version control instead of 
-having to add multiple credentials into your `.env` file.
+having to add multiple credentials into your `.env` file in your production environment.
 
 There are a couple of benefits of using encrypted credentials instead of environment keys:
 
