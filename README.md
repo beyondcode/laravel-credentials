@@ -15,10 +15,10 @@ There are a couple of benefits of using encrypted credentials instead of environ
 * You can deploy credentials together with your code.
 * All secrets are in one location. Instead of managing multiple environment variables, everything is in one file.
 
-Here's how you can access your stored credentials:
+Here's how you can access your stored credentials. In this example we're retrieving the decrypted credential for the key `api-password`:
 
 ```php
-$secret = credentials('my-secret-credentials');
+$credential = credentials('api-password');
 ```
 
 With the built-in edit command, you can easily edit your existing credentials. They will be automatically encrypted after saving your changes.
