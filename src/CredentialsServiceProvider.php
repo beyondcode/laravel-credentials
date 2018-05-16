@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 class CredentialsServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap the application services.
      */
@@ -18,6 +19,22 @@ class CredentialsServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->mergeConfigFrom(__DIR__ . '/../config/credentials.php', 'credentials');
+
+        // Update configuration strings
+        if( !app()->configurationIsCached()) {
+            $this->fixConfig();
+        }
+    }
+
+    protected function fixConfig()
+    {
+        collect(array_dot(config()->all()))->filter(function ($item) {
+            return is_string($item) && starts_with($item, Credentials::CONFIG_PREFIX);
+        })->map(function ($item, $key) {
+            $item = str_replace_first(Credentials::CONFIG_PREFIX, '', $item);
+
+            config()->set($key, credentials($item));
+        });
     }
 
     /**

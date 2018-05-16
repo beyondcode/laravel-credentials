@@ -38,12 +38,8 @@ class EditCredentialsCommand extends Command
 
         $process = new Process($editor.' '.$meta['uri']);
 
-        try {
-            $process->setTty(true);
-            $process->mustRun();
-        } catch (ProcessFailedException $e) {
-            dd($e->getMessage());
-        }
+        $process->setTty(true);
+        $process->mustRun();
 
         $data = json_decode(file_get_contents($meta['uri']), JSON_OBJECT_AS_ARRAY);
 

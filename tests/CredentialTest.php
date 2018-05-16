@@ -123,4 +123,22 @@ class CredentialTest extends TestCase
 
         $this->assertSame('my-secret-value', credentials('key'));
     }
+
+    /** @test */
+    public function it_replaces_credential_strings_in_the_configuration_files()
+    {
+        $this->app['config']->set('credentials.file', __DIR__ . '/temp/credentials.php.enc');
+
+        $data = [
+            'key' => 'my-secret-value'
+        ];
+
+        $credentials = app(Credentials::class);
+
+        $credentials->store($data, __DIR__ . '/temp/credentials.php.enc');
+
+        $this->app['config']->set('credentials.secret', Credentials::CONFIG_PREFIX.'key');
+
+        $this->assertSame('my-secret-value', credentials('key'));
+    }
 }

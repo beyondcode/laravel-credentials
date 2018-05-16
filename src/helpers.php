@@ -6,9 +6,13 @@ if (!function_exists('credentials')) {
     function credentials(string $key, $default = null) {
         $filename = config('credentials.file');
 
-        $credentials = app(Credentials::class);
-        $credentials->load($filename);
+        try {
+        	$credentials = app(Credentials::class);
+        	$credentials->load($filename);
 
-        return $credentials->get($key);
+        	return $credentials->get($key);
+        } catch (ReflectionException $e) {
+			return Credentials::CONFIG_PREFIX.$key;
+        }
     }
 }

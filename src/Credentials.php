@@ -8,6 +8,7 @@ use BeyondCode\Credentials\Exceptions\FileDoesNotExist;
 
 class Credentials
 {
+    const CONFIG_PREFIX = '___credentials_';
 
     /** @var Encrypter */
     private $encrypter;
