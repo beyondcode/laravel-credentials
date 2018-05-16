@@ -1,4 +1,4 @@
-# A .env replacement for storing secret credentials in your Laravel application
+# Add encrypted credentials to your Laravel production environment
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/beyondcode/laravel-credentials.svg?style=flat-square)](https://packagist.org/packages/beyondcode/laravel-credentials)
 [![Build Status](https://img.shields.io/travis/beyondcode/laravel-credentials/master.svg?style=flat-square)](https://travis-ci.org/beyondcode/laravel-credentials)
@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/beyondcode/laravel-credentials.svg?style=flat-square)](https://packagist.org/packages/beyondcode/laravel-credentials)
 
 The `beyondcode/laravel-credentials` package allows you to store all your secret credentials in an encrypted file and put that file into version control instead of 
-having to add multiple credentials into your `.env` file.
+having to add multiple credentials into your `.env` file in your production environment.
 
 There are a couple of benefits of using encrypted credentials instead of environment keys:
 
@@ -15,10 +15,10 @@ There are a couple of benefits of using encrypted credentials instead of environ
 * You can deploy credentials together with your code.
 * All secrets are in one location. Instead of managing multiple environment variables, everything is in one file.
 
-Here's how you can access your stored credentials:
+Here's how you can access your stored credentials. In this example we're retrieving the decrypted credential for the key `api-password`:
 
 ```php
-$secret = credentials('my-secret-credentials');
+$credential = credentials('api-password');
 ```
 
 With the built-in edit command, you can easily edit your existing credentials. They will be automatically encrypted after saving your changes.
@@ -76,7 +76,7 @@ composer test
 
 ### Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
 ## Contributing
 
