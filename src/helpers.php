@@ -10,7 +10,7 @@ if (!function_exists('credentials')) {
         	$credentials = app(Credentials::class);
         	$credentials->load($filename);
 
-        	return $credentials->get($key);
+        	return $credentials->get($key, $default);
         } catch (ReflectionException $e) {
 			return Credentials::CONFIG_PREFIX.$key;
         }
