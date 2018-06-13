@@ -21,7 +21,7 @@ class CredentialsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../config/credentials.php', 'credentials');
 
         // Update configuration strings
-        if( !app()->configurationIsCached()) {
+        if (!app()->configurationIsCached()) {
             $this->fixConfig();
         }
     }
@@ -42,7 +42,7 @@ class CredentialsServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(Credentials::class, function(){
+        $this->app->bind(Credentials::class, function () {
 
             // If the key starts with "base64:", we will need to decode the key before handing
             // it off to the encrypter. Keys may be base-64 encoded for presentation and we
