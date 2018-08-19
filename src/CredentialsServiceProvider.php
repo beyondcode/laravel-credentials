@@ -8,9 +8,10 @@ use Illuminate\Support\ServiceProvider;
 
 class CredentialsServiceProvider extends ServiceProvider
 {
-
     /**
      * Bootstrap the application services.
+     *
+     * @return void
      */
     public function boot()
     {
@@ -26,6 +27,11 @@ class CredentialsServiceProvider extends ServiceProvider
         }
     }
 
+    /**
+     * Fix the configuration.
+     *
+     * @return void
+     */
     protected function fixConfig()
     {
         collect(array_dot(config()->all()))->filter(function ($item) {
@@ -39,6 +45,8 @@ class CredentialsServiceProvider extends ServiceProvider
 
     /**
      * Register the application services.
+     *
+     * @return void
      */
     public function register()
     {
@@ -52,6 +60,7 @@ class CredentialsServiceProvider extends ServiceProvider
             }
 
             $encrypter = new Encrypter($key, config('credentials.cipher'));
+
             return new Credentials($encrypter);
         });
 
