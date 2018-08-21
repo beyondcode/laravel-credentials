@@ -6,11 +6,23 @@ use Exception;
 
 class InvalidJSON extends Exception
 {
+    /**
+     * Create a new InvalidJson exception instance.
+     *
+     * @param int $error
+     * @return $this
+     */
     public static function create($error)
     {
         return new static("Unable to parse credential JSON ".self::getErrorMessage($error));
     }
 
+    /**
+     * Get the error message.
+     *
+     * @param int $error
+     * @return string
+     */
     private static function getErrorMessage($error)
     {
         switch ($error) {

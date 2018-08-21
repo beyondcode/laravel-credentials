@@ -10,15 +10,25 @@ class Credentials
 {
     const CONFIG_PREFIX = '___credentials_';
 
-    /** @var Encrypter */
+    /**
+     * The encrypter.
+     *
+     * @var \Illuminate\Contracts\Encryption\Encrypter
+     */
     private $encrypter;
 
-    /** @var array */
+    /**
+     * The decrpyted values array.
+     *
+     * @var array
+     */
     private $decrypted;
 
     /**
      * Create a new Credentials Instance.
-     * @param Encrypter $encrypter
+     *
+     * @param \Illuminate\Contracts\Encryption\Encrypter $encrypter
+     * @return void
      */
     public function __construct(Encrypter $encrypter)
     {
@@ -26,6 +36,8 @@ class Credentials
     }
 
     /**
+     * Load the file.
+     *
      * @param string $filename
      * @return array
      */
@@ -33,6 +45,7 @@ class Credentials
     {
         if (!file_exists($filename)) {
             $this->decrypted = [];
+
             return $this->decrypted;
         }
 
@@ -48,6 +61,7 @@ class Credentials
      *
      * @param array $data
      * @param string $filename
+     * @return void
      */
     public function store(array $data, string $filename)
     {
@@ -59,6 +73,8 @@ class Credentials
     }
 
     /**
+     * Get an encrypter value.
+     *
      * @param string $key
      * @param null $default
      * @return mixed
