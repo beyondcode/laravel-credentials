@@ -18,7 +18,7 @@ class Credentials
     private $encrypter;
 
     /**
-     * The decrpyted values array.
+     * The decrypted values array.
      *
      * @var array
      */
