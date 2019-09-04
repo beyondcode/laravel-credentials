@@ -2,6 +2,7 @@
 
 namespace BeyondCode\Credentials\Tests;
 
+use Illuminate\Support\Str;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Encryption\Encrypter;
 use BeyondCode\Credentials\Credentials;
@@ -14,7 +15,7 @@ class CredentialTest extends TestCase
         return [CredentialsServiceProvider::class];
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         @unlink(__DIR__ . '/temp/credentials.php.enc');
     }
@@ -22,7 +23,7 @@ class CredentialTest extends TestCase
     /** @test */
     public function it_can_load_encrypted_files()
     {
-        $masterKey = str_random(16);
+        $masterKey = Str::random(16);
 
         // create fake credentials
         $encrypter = new Encrypter($masterKey);
@@ -44,7 +45,7 @@ class CredentialTest extends TestCase
     /** @test */
     public function it_can_store_data_encrypted()
     {
-        $masterKey = str_random(16);
+        $masterKey = Str::random(16);
 
         $encrypter = new Encrypter($masterKey);
 
@@ -64,7 +65,7 @@ class CredentialTest extends TestCase
     /** @test */
     public function it_returns_decrypted_data()
     {
-        $masterKey = str_random(16);
+        $masterKey = Str::random(16);
 
         // create fake credentials
         $encrypter = new Encrypter($masterKey);
@@ -91,7 +92,7 @@ class CredentialTest extends TestCase
      */
     public function it_can_not_decrypt_with_the_wrong_key()
     {
-        $masterKey = str_random(16);
+        $masterKey = Str::random(16);
 
         // create fake credentials
         $encrypter = new Encrypter($masterKey);
@@ -103,7 +104,7 @@ class CredentialTest extends TestCase
 
         file_put_contents(__DIR__ . '/temp/credentials.php.enc', $encryptedData);
 
-        $credentials = new Credentials(new Encrypter(str_random(16)));
+        $credentials = new Credentials(new Encrypter(Str::random(16)));
 
         $credentials->load(__DIR__ . '/temp/credentials.php.enc');
     }

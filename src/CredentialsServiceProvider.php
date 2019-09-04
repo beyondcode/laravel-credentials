@@ -2,6 +2,7 @@
 
 namespace BeyondCode\Credentials;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Encryption\Encrypter;
 use Illuminate\Support\ServiceProvider;
@@ -28,8 +29,8 @@ class CredentialsServiceProvider extends ServiceProvider
 
     protected function fixConfig()
     {
-        collect(array_dot(config()->all()))->filter(function ($item) {
-            return is_string($item) && starts_with($item, Credentials::CONFIG_PREFIX);
+        collect(Arr::dot(config()->all()))->filter(function ($item) {
+            return is_string($item) && Str::startsWith($item, Credentials::CONFIG_PREFIX);
         })->map(function ($item, $key) {
             $item = str_replace_first(Credentials::CONFIG_PREFIX, '', $item);
 
