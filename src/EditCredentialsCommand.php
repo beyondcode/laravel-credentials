@@ -5,7 +5,6 @@ namespace BeyondCode\Credentials;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 use BeyondCode\Credentials\Exceptions\InvalidJSON;
-use Symfony\Component\Process\Exception\ProcessFailedException;
 
 class EditCredentialsCommand extends Command
 {
@@ -23,6 +22,12 @@ class EditCredentialsCommand extends Command
      */
     protected $description = 'Encrypt and edit existing credentials. They will be decrypted after saving.';
 
+    /**
+     * The command handler.
+     *
+     * @param \BeyondCode\Credentials\Credentials $credentials
+     * @return void
+     */
     public function handle(Credentials $credentials)
     {
         $filename = config('credentials.file');

@@ -21,13 +21,18 @@ Here's how you can access your stored credentials. In this example we're retriev
 $credential = credentials('api-password');
 ```
 
+You can also specify a fallback value to be used if the credential for the specified key cannot be decrypted:
+
+```php
+$credential = credentials('my-production-token', 'my-fallback-value');
+```
+
 With the built-in edit command, you can easily edit your existing credentials. They will be automatically encrypted after saving your changes.
 
 ```bash
 php artisan credentials:edit
 ```
 ![Credentials Demo](https://beyondco.de/github/credentials.gif)
-
 
 ## Installation
 

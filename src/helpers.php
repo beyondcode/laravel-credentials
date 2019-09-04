@@ -2,17 +2,25 @@
 
 use BeyondCode\Credentials\Credentials;
 
-if (!function_exists('credentials')) {
-    function credentials(string $key, $default = null) {
+if (! function_exists('credentials')) {
+    /**
+     * Get a an encrypted value.
+     *
+     * @param string $key
+     * @param null $default
+     * @return mixed
+     */
+    function credentials(string $key, $default = null)
+    {
         $filename = config('credentials.file');
 
         try {
-        	$credentials = app(Credentials::class);
-        	$credentials->load($filename);
+            $credentials = app(Credentials::class);
+            $credentials->load($filename);
 
-        	return $credentials->get($key);
+            return $credentials->get($key, $default);
         } catch (ReflectionException $e) {
-			return Credentials::CONFIG_PREFIX.$key;
+            return Credentials::CONFIG_PREFIX.$key;
         }
     }
 }
