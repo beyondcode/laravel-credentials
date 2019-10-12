@@ -6,6 +6,7 @@ use Illuminate\Support\Str;
 use Orchestra\Testbench\TestCase;
 use Illuminate\Encryption\Encrypter;
 use BeyondCode\Credentials\Credentials;
+use Illuminate\Contracts\Encryption\DecryptException;
 use BeyondCode\Credentials\CredentialsServiceProvider;
 
 class CredentialTest extends TestCase
@@ -88,10 +89,11 @@ class CredentialTest extends TestCase
 
     /**
      * @test
-     * @expectedException Illuminate\Contracts\Encryption\DecryptException
      */
     public function it_can_not_decrypt_with_the_wrong_key()
     {
+        $this->expectException(DecryptException::class);
+
         $masterKey = Str::random(16);
 
         // create fake credentials
