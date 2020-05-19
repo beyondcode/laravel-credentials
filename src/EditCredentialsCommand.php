@@ -41,7 +41,7 @@ class EditCredentialsCommand extends Command
 
         $editor = env('EDITOR', 'vi');
 
-        $process = new Process($editor.' '.$meta['uri']);
+        $process = new Process([$editor, $meta['uri']]);
 
         $process->setTty(true);
         $process->mustRun();
