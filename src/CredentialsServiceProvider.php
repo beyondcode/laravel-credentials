@@ -38,7 +38,7 @@ class CredentialsServiceProvider extends ServiceProvider
         collect(Arr::dot(config()->all()))->filter(function ($item) {
             return is_string($item) && Str::startsWith($item, Credentials::CONFIG_PREFIX);
         })->map(function ($item, $key) {
-            $item = str_replace_first(Credentials::CONFIG_PREFIX, '', $item);
+            $item = Str::replaceFirst(Credentials::CONFIG_PREFIX, '', $item);
 
             config()->set($key, credentials($item));
         });
