@@ -15,4 +15,6 @@ return [
 
     'cipher' => config('app.cipher'),
 
+    'editor' => env('EDITOR', 'vi')
+
 ];

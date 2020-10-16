@@ -39,7 +39,7 @@ class EditCredentialsCommand extends Command
 
         fwrite($handle, json_encode($decrypted, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT));
 
-        $editor = env('EDITOR', 'vi');
+        $editor = config('credential.editor', 'vi');
 
         $process = new Process([$editor, $meta['uri']]);
 

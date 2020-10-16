@@ -32,6 +32,13 @@ With the built-in edit command, you can easily edit your existing credentials. T
 ```bash
 php artisan credentials:edit
 ```
+
+Optionally, you can change the used editor by adding the following to your .env file:
+
+```
+EDITOR=nano
+```
+
 ![Credentials Demo](https://beyondco.de/github/credentials.gif)
 
 ## Installation
