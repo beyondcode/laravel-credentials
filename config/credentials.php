@@ -15,6 +15,10 @@ return [
 
     'cipher' => config('app.cipher'),
 
-    'editor' => env('EDITOR', 'vi')
+    'editor' => env('EDITOR', 'vi'),
+
+    'editorParams' => env('EDITOR_PARAMS'),
+
+    'timeout' => env('EDITOR_TIMEOUT', 60)
 
 ];
