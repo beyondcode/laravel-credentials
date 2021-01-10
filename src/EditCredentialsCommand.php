@@ -39,11 +39,19 @@ class EditCredentialsCommand extends Command
 
         fwrite($handle, json_encode($decrypted, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT));
 
-        $editor = config('credential.editor', 'vi');
+        $editor = config('credentials.editor', 'vi');
+        $editorParams = config('credentials.editorParams');
 
-        $process = new Process([$editor, $meta['uri']]);
+        $process = new Process([$editor, $editorParams, $meta['uri']],
+            null,
+            null,
+            null,
+            config('credentials.timeout'));
 
-        $process->setTty(true);
+        if (!(stripos(PHP_OS, 'WIN') === 0 || PHP_OS_FAMILY === "Windows"))
+        {
+            $process->setTty(true);
+        }
         $process->mustRun();
 
         $data = json_decode(file_get_contents($meta['uri']), JSON_OBJECT_AS_ARRAY);
