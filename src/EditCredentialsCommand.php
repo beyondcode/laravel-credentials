@@ -43,6 +43,14 @@ class EditCredentialsCommand extends Command
 
         $process = new Process([$editor, $meta['uri']]);
 
+        $process = new Process(
+            [$editor, $meta['uri']],
+            null,
+            null,
+            null,
+            config('credentials.timeout')
+        );
+
         $process->setTty(true);
         $process->mustRun();
 
